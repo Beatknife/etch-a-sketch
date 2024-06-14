@@ -1,37 +1,68 @@
 const canvas = document.getElementById("canvas");
+const colorCanvas = document.getElementById("colors");
 const divSquares = document.querySelectorAll("#canvas > div");
 const generateBtn = document.getElementById("generateBtn");
+const clearBtn = document.getElementById("clearBtn");
+const canvasSize = 600;
 
-function generateSquares(squares) {
+let onMouseColor = "black";
 
-    for(let i = 0; i < squares; i++) {
+function generateSquares(squareNum) {
+
+    let squareSize = canvasSize / squareNum
+
+    for(let i = 0; i < (squareNum ** 2); i++) {
 
     let divSquares = document.createElement("div");
     canvas.appendChild(divSquares);
     divSquares.classList.add("divSquares");
+    divSquares.style.width = `${squareSize}px`
+    divSquares.style.height = `${squareSize}px`
     }
 }
 
+clearBtn.addEventListener("click", () => {
+
+    const _divSquares = document.querySelectorAll("#canvas > .divSquares");
+    _divSquares.forEach(eachDiv => {
+        eachDiv.style.backgroundColor = "white";
+    });
+
+})
+
 canvas.addEventListener("mouseover", (event) => {
     if (event.target.classList.contains("divSquares")) {
-        event.target.style.backgroundColor = "orange";
+        event.target.style.backgroundColor = `${onMouseColor}`;
+    }
+});
+
+colorCanvas.addEventListener("click", (event) => {
+    if (event.target.classList.contains("color")) {
+        onMouseColor = event.target.id;
     }
 });
 
 generateBtn.addEventListener("click", () => {
 
-    let squareNum = parseFloat(prompt("Number of squares per side?"));
+    let squareNum = parseFloat(prompt("Enter a number of squares per side. For example, 16 for 16 squares each side, total of 256 squares. Default value is 16."));
 
-    if(squareNum <= 100) {
+    if(squareNum <= 100 && squareNum > 0) {
         canvas.textContent = "";
-        generateSquares(squareNum ** 2); 
+        generateSquares(squareNum); 
     }
-    else if(squareNum > 100) {
-        canvas.textContent = "";     
-        alert("You can create max 100x100 squares.");
+    else if(squareNum > 100) {   
+        alert("You can create max 100x100 squares. Default value will be applied");
+        canvas.textContent = "";
+        generateSquares(16); 
     }
     else if(isNaN(squareNum)) {
+        alert("You can only input numbers. Default value will be applied");
         canvas.textContent = "";
-        alert("You can only input numbers.")
+        generateSquares(16); 
+    }
+    else {
+        alert("Please enter positive numbers. Default value will be applied");
+        canvas.textContent = "";
+        generateSquares(16); 
     }
 });
