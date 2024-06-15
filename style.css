@@ -35,14 +35,6 @@ body {
     justify-content: space-around;
 }
 
-#colorsLeft {
-    display: flex;
-    flex-direction: column;
-    width: 40px;
-    height: 600px;
-    justify-content: space-around;
-}
-
 #colors > button {
     border: none;
     cursor: pointer;
@@ -50,6 +42,10 @@ body {
 
 #black {
     background-color: black;
+}
+
+#white {
+    background-color: white;
 }
 
 #red {
@@ -88,7 +84,7 @@ body {
 }
 
 .divSquares {
-    border: none;
+    border: 1px solid hsl(0, 0%, 95%);;
     box-sizing: border-box;
 }
 

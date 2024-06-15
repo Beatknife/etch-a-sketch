@@ -7,6 +7,8 @@ const canvasSize = 600;
 
 let onMouseColor = "black";
 
+generateSquares(16);
+
 function generateSquares(squareNum) {
 
     let squareSize = canvasSize / squareNum
@@ -30,7 +32,7 @@ clearBtn.addEventListener("click", () => {
 
 })
 
-canvas.addEventListener("mouseover", (event) => {
+canvas.addEventListener("mousedown", (event) => {
     if (event.target.classList.contains("divSquares")) {
         event.target.style.backgroundColor = `${onMouseColor}`;
     }
