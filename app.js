@@ -28,7 +28,7 @@ clearBtn.addEventListener("click", () => {
 
     const _divSquares = document.querySelectorAll("#canvas > .divSquares");
     _divSquares.forEach(eachDiv => {
-        eachDiv.style.backgroundColor = "null";
+        eachDiv.style.backgroundColor = "white";
     });
 
 })
