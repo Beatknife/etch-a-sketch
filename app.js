@@ -6,6 +6,7 @@ const clearBtn = document.getElementById("clearBtn");
 const canvasSize = 600;
 
 let onMouseColor = "black";
+let isMouseDown = false;
 
 generateSquares(16);
 
@@ -27,15 +28,31 @@ clearBtn.addEventListener("click", () => {
 
     const _divSquares = document.querySelectorAll("#canvas > .divSquares");
     _divSquares.forEach(eachDiv => {
-        eachDiv.style.backgroundColor = "white";
+        eachDiv.style.backgroundColor = "null";
     });
 
 })
 
 canvas.addEventListener("mousedown", (event) => {
     if (event.target.classList.contains("divSquares")) {
+        isMouseDown = true;
         event.target.style.backgroundColor = `${onMouseColor}`;
     }
+});
+
+canvas.addEventListener("mouseup", (event) => {
+        isMouseDown = false;
+});
+
+
+canvas.addEventListener("mousemove", (event) => {
+    if (isMouseDown && event.target.classList.contains("divSquares")) {
+        event.target.style.backgroundColor = `${onMouseColor}`;
+    }
+});
+
+document.body.addEventListener("mouseup", () => {
+    isMouseDown = false;
 });
 
 colorCanvas.addEventListener("click", (event) => {
@@ -68,3 +85,4 @@ generateBtn.addEventListener("click", () => {
         generateSquares(16); 
     }
 });
+
