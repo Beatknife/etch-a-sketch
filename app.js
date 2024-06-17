@@ -7,6 +7,7 @@ const canvasSize = 600;
 
 let onMouseColor = "black";
 let isMouseDown = false;
+let hue = 300;
 
 generateSquares(16);
 
@@ -37,6 +38,7 @@ canvas.addEventListener("mousedown", (event) => {
     if (event.target.classList.contains("divSquares")) {
         isMouseDown = true;
         event.target.style.backgroundColor = `${onMouseColor}`;
+        console.log(event.target.style.backgroundColor);
     }
 });
 
@@ -58,6 +60,11 @@ document.body.addEventListener("mouseup", () => {
 colorCanvas.addEventListener("click", (event) => {
     if (event.target.classList.contains("color")) {
         onMouseColor = event.target.id;
+    }
+
+    else if (event.target.classList.contains("rainbow")) {
+        onMouseColor = `hsl(${hue}, 100%, 50%)`
+        console.log(onMouseColor);
     }
 });
 
