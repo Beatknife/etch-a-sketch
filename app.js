@@ -68,6 +68,10 @@ colorCanvas.addEventListener("click", (event) => {
     }
 });
 
+function changeHue() {
+    
+}
+
 generateBtn.addEventListener("click", () => {
 
     let squareNum = parseFloat(prompt("Enter a number of squares per side. For example, 16 for 16 squares each side, total of 256 squares. Default value is 16."));
