@@ -7,6 +7,7 @@ const canvasSize = 600;
 
 let onMouseColor = "black";
 let isMouseDown = false;
+let rainbowColorChoose = false;
 let hue = 300;
 
 generateSquares(16);
@@ -36,9 +37,15 @@ clearBtn.addEventListener("click", () => {
 
 canvas.addEventListener("mousedown", (event) => {
     if (event.target.classList.contains("divSquares")) {
+        event.preventDefault();
         isMouseDown = true;
         event.target.style.backgroundColor = `${onMouseColor}`;
-        console.log(event.target.style.backgroundColor);
+    }
+
+    if (event.target.classList.contains("divSquares") && rainbowColorChoose === true) {
+        event.preventDefault();
+        isMouseDown = true;
+        changeHue();
     }
 });
 
@@ -49,8 +56,13 @@ canvas.addEventListener("mouseup", (event) => {
 
 canvas.addEventListener("mousemove", (event) => {
     if (isMouseDown && event.target.classList.contains("divSquares")) {
-        event.target.style.backgroundColor = `${onMouseColor}`;
+        event.target.style.backgroundColor = `${onMouseColor}`;  
     }
+
+    if (rainbowColorChoose === true && isMouseDown && event.target.classList.contains("divSquares")) {
+        changeHue();
+    }
+    
 });
 
 document.body.addEventListener("mouseup", () => {
@@ -60,16 +72,17 @@ document.body.addEventListener("mouseup", () => {
 colorCanvas.addEventListener("click", (event) => {
     if (event.target.classList.contains("color")) {
         onMouseColor = event.target.id;
+        rainbowColorChoose = false;
     }
 
-    else if (event.target.classList.contains("rainbow")) {
-        onMouseColor = `hsl(${hue}, 100%, 50%)`
-        console.log(onMouseColor);
+    else {
+        rainbowColorChoose = true;
     }
 });
 
 function changeHue() {
-    
+    hue = Math.floor(Math.random() * 360);
+    onMouseColor = `hsl(${hue}, 100%, 50%)`
 }
 
 generateBtn.addEventListener("click", () => {
