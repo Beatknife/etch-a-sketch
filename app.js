@@ -62,7 +62,6 @@ canvas.addEventListener("mousemove", (event) => {
     if (rainbowColorChoose === true && isMouseDown && event.target.classList.contains("divSquares")) {
         changeHue();
     }
-    
 });
 
 document.body.addEventListener("mouseup", () => {
