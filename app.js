@@ -17,13 +17,13 @@ function generateSquares(squareNum) {
     let squareSize = canvasSize / squareNum
 
     for(let i = 0; i < (squareNum ** 2); i++) {
-
     let divSquares = document.createElement("div");
     canvas.appendChild(divSquares);
     divSquares.classList.add("divSquares");
     divSquares.style.width = `${squareSize}px`
     divSquares.style.height = `${squareSize}px`
     }
+
 }
 
 clearBtn.addEventListener("click", () => {
@@ -36,32 +36,38 @@ clearBtn.addEventListener("click", () => {
 })
 
 canvas.addEventListener("mousedown", (event) => {
-    if (event.target.classList.contains("divSquares")) {
+
+    if(event.target.classList.contains("divSquares")) {
         event.preventDefault();
         isMouseDown = true;
         event.target.style.backgroundColor = `${onMouseColor}`;
     }
 
-    if (event.target.classList.contains("divSquares") && rainbowColorChoose === true) {
+    if(event.target.classList.contains("divSquares") && rainbowColorChoose === true) {
         event.preventDefault();
         isMouseDown = true;
         changeHue();
     }
+
 });
 
 canvas.addEventListener("mouseup", (event) => {
+
         isMouseDown = false;
+
 });
 
 
 canvas.addEventListener("mousemove", (event) => {
-    if (isMouseDown && event.target.classList.contains("divSquares")) {
+
+    if(isMouseDown && event.target.classList.contains("divSquares")) {
         event.target.style.backgroundColor = `${onMouseColor}`;  
     }
 
-    if (rainbowColorChoose === true && isMouseDown && event.target.classList.contains("divSquares")) {
+    if(rainbowColorChoose === true && isMouseDown && event.target.classList.contains("divSquares")) {
         changeHue();
     }
+    
 });
 
 document.body.addEventListener("mouseup", () => {
