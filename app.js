@@ -71,7 +71,9 @@ canvas.addEventListener("mousemove", (event) => {
 });
 
 document.body.addEventListener("mouseup", () => {
+
     isMouseDown = false;
+
 });
 
 colorCanvas.addEventListener("click", (event) => {
