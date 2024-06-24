@@ -77,6 +77,7 @@ document.body.addEventListener("mouseup", () => {
 });
 
 colorCanvas.addEventListener("click", (event) => {
+
     if (event.target.classList.contains("color")) {
         onMouseColor = event.target.id;
         rainbowColorChoose = false;
@@ -85,11 +86,14 @@ colorCanvas.addEventListener("click", (event) => {
     else {
         rainbowColorChoose = true;
     }
+
 });
 
 function changeHue() {
+
     hue = Math.floor(Math.random() * 360);
-    onMouseColor = `hsl(${hue}, 100%, 50%)`
+    onMouseColor = `hsl(${hue}, 100%, 50%)`;
+
 }
 
 generateBtn.addEventListener("click", () => {
@@ -115,5 +119,6 @@ generateBtn.addEventListener("click", () => {
         canvas.textContent = "";
         generateSquares(16); 
     }
+    
 });
 
